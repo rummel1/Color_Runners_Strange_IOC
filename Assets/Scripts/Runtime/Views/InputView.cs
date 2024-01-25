@@ -16,7 +16,6 @@ namespace Runtime.Views
         public UnityAction<float, float> onMovementInputTaken = delegate { };
 
         public UnityAction<Vector3> onRotationInputTaken = delegate { };
-        public UnityAction<int> onDequeueBullet = delegate { };
 
         #endregion
 
@@ -39,42 +38,16 @@ namespace Runtime.Views
 
         #endregion
 
-        protected override void Start()
-        {
-            base.Start();
-
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
         private void Update()
         {
             if (!IsAvailableForTouch) return;
 
             onRotationInputTaken?.Invoke(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")));
 
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIElement())
-            {
-                onDequeueBullet.Invoke(1);
-            }
-
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                onDequeueBullet.Invoke(2);
-            }
-
-
             if (Input.anyKey)
                 onMovementInputTaken?.Invoke(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
-
-        private bool IsPointerOverUIElement()
-        {
-            var eventData = new PointerEventData(EventSystem.current);
-            eventData.position = Input.mousePosition;
-            var results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
-            return results.Count > 0;
-        }
+        
         
     }
 }

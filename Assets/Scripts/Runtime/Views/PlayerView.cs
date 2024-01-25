@@ -19,8 +19,6 @@ namespace Runtime.Views
         [Header("Data")]
         public PlayerVO Vo;
 
-        [Space] public Transform GunObject;
-
         #endregion
 
         [Space]
