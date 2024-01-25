@@ -7,7 +7,6 @@ namespace Runtime.Controller
 {
     public class OnGetPlayerDataCommand : Command
     {
-        [Inject] public IPlayerModel PlayerModel { get; set; }
 
         [Inject] public GameSignals GameSignals { get; set; }
 
@@ -17,16 +16,9 @@ namespace Runtime.Controller
         public override void Execute()
         {
             Retain();
-
-            GetPlayerData();
-
             GameSignals.onPlayerDataInitialize.Dispatch(LevelStartPlayerDataHolderParams);
             Release();
         }
-
-        private void GetPlayerData()
-        {
-            LevelStartPlayerDataHolderParams = PlayerModel.LoadPlayerData();
-        }
+        
     }
 }

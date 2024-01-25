@@ -7,7 +7,6 @@ namespace Runtime.Controller
 {
     public class OnGetInputDataCommand : Command
     {
-        [Inject] public IInputModel InputModel { get; set; }
 
         [Inject] public GameSignals GameSignals { get; set; }
 
@@ -17,16 +16,9 @@ namespace Runtime.Controller
         public override void Execute()
         {
             Retain();
-
-            GetInputData();
-
             GameSignals.onInputDataInitialize.Dispatch(LevelStartInputDataHolderParam);
             Release();
         }
-
-        private void GetInputData()
-        {
-            LevelStartInputDataHolderParam = InputModel.LoadInputData();
-        }
+        
     }
 }

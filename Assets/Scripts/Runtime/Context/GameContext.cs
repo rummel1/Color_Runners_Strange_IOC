@@ -16,31 +16,29 @@ namespace Runtime.Context
     public class GameContext : RichMVCContext
     {
         private GameSignals _gameSignals;
-        private UISignals _uiSignals;
         private InputSignals _inputSignals;
-        private SRSignals _srSignals;
+        private CameraSignals _cameraSignals;
+        private PlayerSignals _playerSignals;
 
         protected override void mapBindings()
         {
             base.mapBindings();
 
-
-            _uiSignals = injectionBinder.BindCrossContextSingletonSafely<UISignals>();
+            
             _gameSignals = injectionBinder.BindCrossContextSingletonSafely<GameSignals>();
             _inputSignals = injectionBinder.BindCrossContextSingletonSafely<InputSignals>();
-            _srSignals = injectionBinder.BindCrossContextSingletonSafely<SRSignals>();
+            _cameraSignals = injectionBinder.BindCrossContextSingletonSafely<CameraSignals>();
+            _playerSignals = injectionBinder.BindCrossContextSingletonSafely<PlayerSignals>();
 
 
             //Injection Bindings
             injectionBinder.Bind<IGameModel>().To<GameModel>().CrossContext().ToSingleton();
-            injectionBinder.Bind<IInputModel>().To<InputModel>().CrossContext().ToSingleton();
-            injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().CrossContext().ToSingleton();
+
             injectionBinder.Bind<ProjectSROptions>().ToSingleton().CrossContext();
 
 
             //Mediation Bindings
             mediationBinder.BindView<PlayerView>().ToMediator<PlayerMediator>();
-            mediationBinder.BindView<BulletView>().ToMediator<BulletMediator>();
             mediationBinder.BindView<InputView>().ToMediator<InputMediator>();
             mediationBinder.BindView<CameraView>().ToMediator<CameraMediator>();
             mediationBinder.BindView<ScoreTableView>().ToMediator<ScoreTableMediator>();

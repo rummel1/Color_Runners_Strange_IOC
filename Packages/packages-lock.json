@@ -178,6 +178,14 @@
         "com.unity.textmeshpro": "3.0.1"
       }
     },
+    "rich-modules": {
+      "version": "file:enrich-modules",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "rich-base": "3.0.1"
+      }
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

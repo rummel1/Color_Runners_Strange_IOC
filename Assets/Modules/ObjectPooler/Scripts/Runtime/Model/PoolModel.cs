@@ -67,15 +67,6 @@ namespace Modules.ObjectPooler.Scripts.Runtime.Model
                     var go = Object.Instantiate(pool.Value.PoolObject, _poolParent.transform, true);
                     go.SetActive(false);
                     pool.Value.Type = pool.Key;
-                    switch (pool.Key)
-                    {
-                        case PoolType.Bullet:
-                            go.GetComponent<BulletView>().Vo = (BulletVO) pool.Value.Vo;
-                            break;
-                        case PoolType.PatlayanBullet:
-                            go.GetComponent<BulletView>().Vo = (BulletVO) pool.Value.Vo;
-                            break;
-                    }
 
 
                     poolableObjects.Enqueue(go);
