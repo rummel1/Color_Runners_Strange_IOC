@@ -1,6 +1,5 @@
 ﻿using Rich.Base.Runtime.Abstract.View;
 using Runtime.Data.ValueObject;
-using Runtime.Key;
 using UnityEngine;
 
 namespace Runtime.Views
@@ -53,11 +52,7 @@ namespace Runtime.Views
             characterController = GetComponent<CharacterController>();
         }
 
-
-        public void SetPlayerVo(LevelStartPlayerDataHolderParams playerData)
-        {
-            Vo = playerData.PlayerData;
-        }
+        
 
 
         public void UpdateInputPos(float horizontalInputValue, float verticalInputValue,

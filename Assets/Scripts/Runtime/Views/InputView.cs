@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Rich.Base.Runtime.Abstract.View;
 using Rich.Base.Runtime.Extensions;
 using Runtime.Data.ValueObject;
-using Runtime.Key;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -76,11 +75,6 @@ namespace Runtime.Views
             EventSystem.current.RaycastAll(eventData, results);
             return results.Count > 0;
         }
-
-        public void SetInputData(LevelStartInputDataHolderParam inputData)
-        {
-            Vo.MovementSpeed = inputData.MovementSpeed;
-            Vo.TurnSpeed = inputData.TurnSpeed;
-        }
+        
     }
 }

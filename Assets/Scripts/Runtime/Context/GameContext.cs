@@ -2,12 +2,9 @@
 using Modules.Core.Concrete.Model;
 using Rich.Base.Runtime.Concrete.Context;
 using Rich.Base.Runtime.Extensions;
-using Runtime.Concrete.Injectable.Controller;
-using Runtime.Controller;
 using Runtime.Mediators;
 using Runtime.Model;
 using Runtime.Signals;
-using Runtime.Utility;
 using Runtime.Views;
 using UnityEngine;
 
@@ -33,33 +30,16 @@ namespace Runtime.Context
 
             //Injection Bindings
             injectionBinder.Bind<IGameModel>().To<GameModel>().CrossContext().ToSingleton();
-
-            injectionBinder.Bind<ProjectSROptions>().ToSingleton().CrossContext();
+            
 
 
             //Mediation Bindings
             mediationBinder.BindView<PlayerView>().ToMediator<PlayerMediator>();
             mediationBinder.BindView<InputView>().ToMediator<InputMediator>();
             mediationBinder.BindView<CameraView>().ToMediator<CameraMediator>();
-            mediationBinder.BindView<ScoreTableView>().ToMediator<ScoreTableMediator>();
 
-            //Command Bindings
             
-
-            //Level Behaviour
-            commandBinder.Bind(_gameSignals.onLevelInitialize).InSequence()
-                .To<OnGetInputDataCommand>()
-                .To<OnGetPlayerDataCommand>()
-                .To<OnSetCinemachineTargetCommand>();
-
-            commandBinder.Bind(_gameSignals.onLevelStart).To<OnActivateTouchCommand>();
-
-
-            //Game Initalizer    
-            commandBinder.Bind(_gameSignals.onGameInitialize).InSequence()
-                .To<OnSRDebuggerInitializerFixCommand>()
-                .To<OnSROptionsInjectionCommand>()
-                .To<OnLevelInitializerCommand>();
+  
         }
 
         public override void Launch()
